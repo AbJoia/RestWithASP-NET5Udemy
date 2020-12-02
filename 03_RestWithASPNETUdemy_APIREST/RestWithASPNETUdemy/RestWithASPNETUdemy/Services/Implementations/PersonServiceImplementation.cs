@@ -22,8 +22,8 @@ namespace RestWithASPNETUdemy.Services.Implementations
             return _context.Persons.ToList();
         }
 
-        public Person FindById(long id)
-        {
+        public Person FindById(long id)        {
+            
             return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
         }
 
