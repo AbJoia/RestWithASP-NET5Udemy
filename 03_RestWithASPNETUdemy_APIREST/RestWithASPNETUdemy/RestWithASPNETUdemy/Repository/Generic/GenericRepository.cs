@@ -15,7 +15,7 @@ namespace RestWithASPNETUdemy.Repository.Generic
         public GenericRepository(MySQLContext context)
         {
             _context = context;
-            dataSet = _context.Set<T>();
+            dataSet = _context.Set<T>();            
         }        
 
         public List<T> FindAll()
