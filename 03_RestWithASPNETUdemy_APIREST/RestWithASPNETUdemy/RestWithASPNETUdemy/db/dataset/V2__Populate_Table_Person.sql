@@ -1,5 +1,5 @@
 INSERT INTO `person` VALUES 
-	(1,'São Paulo','Ayrton','Senna','Male'),
-	(2,'Rio de Janeiro','Abner','Joia','Male'),
-	(3,'Rio de Janeiro','Joao','Carlinhos','Male'),
-	(4, 'Rio de Janeiro','Joao','Carlinhos III','Male');
+	(1,'Ayrton','Senna','São Paulo','Male'),
+	(2,'Abner','Joia','Rio de Janeiro','Male'),
+	(3,'Joao','Carlinhos','Rio de Janeiro','Male'),
+	(4,'Joao','Carlinhos III','Rio de Janeiro','Male');

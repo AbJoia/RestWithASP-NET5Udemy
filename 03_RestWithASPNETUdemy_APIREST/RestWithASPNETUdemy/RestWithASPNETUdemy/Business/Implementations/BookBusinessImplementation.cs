@@ -6,9 +6,9 @@ namespace RestWithASPNETUdemy.Business.Implementations
 {
     public class BookBusinessImplementation : IBookBusiness
     {
-        private IBookRepository _repository;
+        private IRepository<Book> _repository;
 
-        public BookBusinessImplementation(IBookRepository repository)
+        public BookBusinessImplementation(IRepository<Book> repository)
         {
             _repository = repository;
         }

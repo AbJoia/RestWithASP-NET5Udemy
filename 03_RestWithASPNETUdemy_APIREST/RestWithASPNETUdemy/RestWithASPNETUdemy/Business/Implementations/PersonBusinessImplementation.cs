@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using RestWithASPNETUdemy.Model;
-using RestWithASPNETUdemy.Model.Context;
 using RestWithASPNETUdemy.Repository;
 
 namespace RestWithASPNETUdemy.Business.Implementations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
-        private IPersonRepository _repository;
+        private IRepository<Person> _repository;
 
-        public PersonBusinessImplementation(IPersonRepository repository)
+        public PersonBusinessImplementation(IRepository<Person> repository)
         {
             _repository = repository;
         }
