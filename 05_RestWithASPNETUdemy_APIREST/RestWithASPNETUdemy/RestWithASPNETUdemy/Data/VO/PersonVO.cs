@@ -1,7 +1,11 @@
 ﻿
+using System.Collections.Generic;
+using RestWithASPNETUdemy.Hypermedia;
+using RestWithASPNETUdemy.Hypermedia.Abstract;
+
 namespace RestWithASPNETUdemy.Data.VO
 {
-    public class PersonVO
+    public class PersonVO : ISupportsHyperMedia
     {        
         public long Id { get; set; }
         
@@ -12,5 +16,7 @@ namespace RestWithASPNETUdemy.Data.VO
         public string Address { get; set; }
        
         public string Gender { get; set; }
+
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }
