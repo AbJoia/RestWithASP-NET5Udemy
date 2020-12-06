@@ -1,0 +1,639 @@
+{
+	"info": {
+		"_postman_id": "d29b19ff-eb7a-4eaf-8172-22d4ffc69dd5",
+		"name": "RestApiRequests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signin Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d75c726c-0e1c-4324-99e2-37848484b313",
+								"exec": [
+									"if(responseCode.code >= 200 && responseCode.code <= 299){\r",
+									"   var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"   postman.setEnvironmentVariable('accessToken', jsonData.accessToken);\r",
+									"   postman.setEnvironmentVariable('refreshToken', jsonData.refreshToken); \r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"userName\" : \"leandro\",\r\n    \"password\" : \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/v{{version}}/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"v{{version}}",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request  Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e048b181-745e-4016-b397-41d4344c231c",
+								"exec": [
+									"if(responseCode.code >= 200 && responseCode.code <= 299){\r",
+									"   var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"   postman.setEnvironmentVariable('accessToken', jsonData.accessToken);\r",
+									"   postman.setEnvironmentVariable('refreshToken', jsonData.refreshToken); \r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"accessToken\": {{accessToken}},\r\n    \"refreshToken\": {{refreshToken}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/v{{version}}/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"v{{version}}",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request  Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8625e675-d792-46ac-9ae0-80579a9934fa",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjNTcyZDJhN2Y5MzI0ZmE3OGRhYzUzMzJjMjNiYWQyZSIsInVuaXF1ZV9uYW1lIjoibGVhbmRybyIsImV4cCI6MTYwNzI3NzE3NywiaXNzIjoiRXhlbXBsZUlzc3VlciIsImF1ZCI6IkV4ZW1wbGVBdWRpZW5jZSJ9.xdX2PmUH2TI1yMxvWsu5XQbG_RFwBG3MstvWmUYTFYI\",\r\n    \"refreshToken\": \"GzR6DvsyWIU+ctP0/CMcI+ed+8KkGKxhdwcpQhiTtsw=\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/v{{version}}/revoke",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"v{{version}}",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "GET ALL ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,   \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/person/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,   \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/person/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{      \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/person/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 7,      \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/person/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,   \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/person/v{{version}}/7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"person",
+								"v{{version}}",
+								"7"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,   \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/book/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,   \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/book/v{{version}}/3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"v{{version}}",
+								"3"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{     \r\n    \"author\": \"Augusto Cury\",\r\n    \"launchDate\": \"2003-06-23T00:00:00\",\r\n    \"price\": 39.90,\r\n    \"title\": \"O Vendedor de Sonhos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/book/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 8,\r\n    \"author\": \"Augusto Cury 22\",\r\n    \"launchDate\": \"2003-06-23T00:00:00\",\r\n    \"price\": 39.90,\r\n    \"title\": \"O Vendedor de Sonhos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/book/v{{version}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"v{{version}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,   \r\n    \"firstName\": \"Abner\",\r\n    \"lastName\": \"Joia\",\r\n    \"address\": \"Rio de Janeiro\",\r\n    \"gender\": \"Male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/book/v{{version}}/7",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"v{{version}}",
+								"7"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
